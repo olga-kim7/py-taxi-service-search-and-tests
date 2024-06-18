@@ -52,40 +52,33 @@ def validate_license_number(
     return license_number
 
 
-class CarSearchForm(forms.Form):
-    model = forms.CharField(
+class SearchForm(forms.Form):
+    query = forms.CharField(
         max_length=250,
         required=False,
         label="",
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "Search by model"
-            }
-        )
+        widget=forms.TextInput()
     )
 
-
-class DriverSearchForm(forms.Form):
-    username = forms.CharField(
-        max_length=250,
-        required=False,
-        label="",
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "Search by username"
-            }
-        )
-    )
+    def __init__(self, *args, **kwargs):
+        placeholder = kwargs.pop("placeholder", "")
+        super(SearchForm, self).__init__(*args, **kwargs)
+        self.fields["query"].widget.attrs["placeholder"] = placeholder
 
 
-class ManufacturerSearchForm(forms.Form):
-    name = forms.CharField(
-        max_length=250,
-        required=False,
-        label="",
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "Search by name"
-            }
-        )
-    )
+class CarSearchForm(SearchForm):
+    def __init__(self, *args, **kwargs):
+        kwargs["placeholder"] = "Search by model"
+        super(CarSearchForm, self).__init__(*args, **kwargs)
+
+
+class DriverSearchForm(SearchForm):
+    def __init__(self, *args, **kwargs):
+        kwargs["placeholder"] = "Search by username"
+        super(DriverSearchForm, self).__init__(*args, **kwargs)
+
+
+class ManufacturerSearchForm(SearchForm):
+    def __init__(self, *args, **kwargs):
+        kwargs["placeholder"] = "Search by name"
+        super(ManufacturerSearchForm, self).__init__(*args, **kwargs)
