@@ -86,7 +86,7 @@ class ManufacturerViewTests(TestCase):
         self.assertTemplateUsed(self.response, "taxi/manufacturer_list.html")
 
     def test_search_fields_present(self):
-        form = ManufacturerSearchForm(data={"name": "test"})
+        form = ManufacturerSearchForm(data={"query": "test"})
         form.is_valid()
         self.assertEqual(form.cleaned_data, form.data)
 
@@ -118,7 +118,7 @@ class CarViewTests(TestCase):
         self.response = self.client.get(self.car_list)
 
     def test_car_search_present(self):
-        form = CarSearchForm(data={"model": "test_model"})
+        form = CarSearchForm(data={"query": "test_model"})
         form.is_valid()
         self.assertEqual(form.cleaned_data, form.data)
 
@@ -149,7 +149,7 @@ class DriverViewTests(TestCase):
         self.response = self.client.get(self.car_list)
 
     def test_driver_search_present(self):
-        form = DriverSearchForm(data={"username": "test"})
+        form = DriverSearchForm(data={"query": "test"})
         form.is_valid()
         self.assertEqual(form.cleaned_data, form.data)
 
