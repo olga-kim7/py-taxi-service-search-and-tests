@@ -1,6 +1,4 @@
-from django.test import TestCase
-
-from django.test import Client
+from django.test import TestCase, Client
 from django.urls import reverse
 
 from taxi.models import Driver, Manufacturer, Car

@@ -1,4 +1,3 @@
-
 from django.test import TestCase
 from django.urls import reverse
 
@@ -38,7 +37,8 @@ class IndexViewTests(TestCase):
         self.index_url = reverse("taxi:index")
         self.user = Driver.objects.create_user(
             username="test",
-            password="password")
+            password="password"
+        )
         self.client.force_login(self.user)
         self.response = self.client.get(self.index_url)
 
@@ -63,7 +63,7 @@ class IndexViewTests(TestCase):
         self.assertEqual(self.response.status_code, 200)
         self.assertEqual(self.response.context["num_cars"], num_manufacturers)
 
-    def test_driver_numvisits_counter_presents(self):
+    def test_driver_num_visits_counter_presents(self):
         self.assertEqual(self.response.context["num_visits"], 1)
         self.response = self.client.get(self.index_url)
         self.assertEqual(self.response.context["num_visits"], 2)
@@ -78,7 +78,8 @@ class ManufacturerViewTests(TestCase):
         self.manufacturer_url = reverse("taxi:manufacturer-list")
         self.user = Driver.objects.create_user(
             username="test",
-            password="password")
+            password="password"
+        )
         self.client.force_login(self.user)
         self.response = self.client.get(self.manufacturer_url)
 

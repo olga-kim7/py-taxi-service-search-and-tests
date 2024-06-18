@@ -69,16 +69,16 @@ class SearchForm(forms.Form):
 class CarSearchForm(SearchForm):
     def __init__(self, *args, **kwargs):
         kwargs["placeholder"] = "Search by model"
-        super(CarSearchForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
 
 class DriverSearchForm(SearchForm):
     def __init__(self, *args, **kwargs):
         kwargs["placeholder"] = "Search by username"
-        super(DriverSearchForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
 
 class ManufacturerSearchForm(SearchForm):
     def __init__(self, *args, **kwargs):
         kwargs["placeholder"] = "Search by name"
-        super(ManufacturerSearchForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
